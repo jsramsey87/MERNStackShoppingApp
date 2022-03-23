@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({limit: "20mb", extended: true}));
 
 app.use(cors());
 
-app.use('/items', router);
+app.use('/Orders', router);
 
 const CONNECTION_URL = "mongodb+srv://user:password123123@cluster0.dkk82.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 

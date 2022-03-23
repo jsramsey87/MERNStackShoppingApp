@@ -1,14 +1,15 @@
 import mongoose from "mongoose";
 
-const itemSchema = mongoose.Schema({
-  itemName: String,
-  check: Boolean,
-  amount: {
-    type: Number,
-    default: 0
-  }
+const orderSchema = mongoose.Schema({
+  clientName: String,
+    design: String,
+    size: String,
+    amount: {
+      type: Number,
+      default: 1
+    }
 });
 
-const itemData = mongoose.model('itemData', itemSchema);
+const orderData = mongoose.model('orderData', orderSchema);
 
-export default itemData;
+export default orderData;

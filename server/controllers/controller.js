@@ -1,45 +1,45 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import itemData from '../models/model.js'
+import OrderData from '../models/model.js'
 import { response } from "express";
 
 const router = express.Router();
 
-export const getItems = async (req, res) => {
+export const getOrders = async (req, res) => {
   try {
-    const allItems = await itemData.find();
-    res.status(200).json(allItems);
+    const allOrders = await OrderData.find();
+    res.status(200).json(allOrders);
   } catch (error) {
     res.status(404).json({message: error.message});
     console.log(error);
   }
 }
 
-export const createItem = async (req, res) => {
-  const { itemName, check, amount } = req.body;
-  const newItem = new itemData({ itemName, check, amount })
+export const createOrder = async (req, res) => {
+  const { clientName, design, size, amount } = req.body;
+  const newOrder = new OrderData({ clientName, design, size, amount })
 try {
-    await newItem.save();
-    res.status(201).json(newItem);
+    await newOrder.save();
+    res.status(201).json(newOrder);
   } catch (error) {
     res.status(409).json({message: error.message});
     console.log(error)
   }
 }
 
-export const updateItem = async (req, res) => {
+export const updateOrder = async (req, res) => {
   const { id } = req.params;
-  const { itemName, check, amount } = req.body;
+  const { clientName, design, size, amount } = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-  const updatedItem = { itemName, check, amount, _id: id };
-  await itemData.findByIdAndUpdate(id, updatedItem, { new: true });
-  res.json(updatedItem);
+  const updatedOrder = { clientName, design, size, amount, _id: id };
+  await OrderData.findByIdAndUpdate(id, updatedOrder, { new: true });
+  res.json(updatedOrder);
 }
 
-export const deleteItem = async (req, res) => {
+export const deleteOrder = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-  await itemData.findByIdAndRemove(id);
+  await OrderData.findByIdAndRemove(id);
   res.json({ message: "Post deleted successfully." });
 }
 

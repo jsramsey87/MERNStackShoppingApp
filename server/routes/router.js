@@ -1,12 +1,12 @@
 import express from 'express';
 
-import { getItems, createItem, deleteItem, updateItem } from '../controllers/controller.js'
+import { getOrders, createOrder, deleteOrder, updateOrder } from '../controllers/controller.js'
 
 const router = express.Router();
 
-router.get('/', getItems);
-router.post('/', createItem);
-router.delete('/:id', deleteItem);
-router.patch('/:id', updateItem);
+router.get('/', getOrders);
+router.post('/', createOrder);
+router.delete('/:id', deleteOrder);
+router.patch('/:id', updateOrder);
 
-export default router;
+export default router; 
