@@ -7,9 +7,10 @@ const orderSchema = mongoose.Schema({
     amount: {
       type: Number,
       default: 1
-    }
+    },
+    due: Date
 });
 
-const orderData = mongoose.model('orderData', orderSchema);
+const OrderData = mongoose.model('orderData', orderSchema);
 
-export default orderData;
+export default OrderData;

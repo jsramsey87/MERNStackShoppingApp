@@ -16,11 +16,11 @@ export const getOrders = async (req, res) => {
 }
 
 export const createOrder = async (req, res) => {
-  const { clientName, design, size, amount } = req.body;
-  const newOrder = new OrderData({ clientName, design, size, amount })
+  const { clientName, design, size, amount, due} = req.body;
+  const newOrder = new OrderData({ clientName, design, size, amount, due })
 try {
     await newOrder.save();
-    res.status(201).json(newOrder);
+    res.status(201).json(newOrder); 
   } catch (error) {
     res.status(409).json({message: error.message});
     console.log(error)
@@ -31,7 +31,7 @@ export const updateOrder = async (req, res) => {
   const { id } = req.params;
   const { clientName, design, size, amount } = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-  const updatedOrder = { clientName, design, size, amount, _id: id };
+  const updatedOrder = { clientName, design, size, amount, due, _id: id };
   await OrderData.findByIdAndUpdate(id, updatedOrder, { new: true });
   res.json(updatedOrder);
 }
