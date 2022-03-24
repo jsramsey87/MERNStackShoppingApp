@@ -8,6 +8,7 @@ const orderSchema = mongoose.Schema({
       type: Number,
       default: 1
     },
+    vinyl: String,
     due: Date
 });
 
